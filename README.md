@@ -2,10 +2,12 @@
 CYBR 320
 
 # Script list
-E_fish        - Modified Enumerate_v1.sh
+Enumerate_v1.sh - Extensive target enumeration list
 
-Eth_d         - Dynamic ip config
+E_fish          - Modified Enumerate_v1.sh
 
-Eth_s         - Static ip config
+Eth_d           - Dynamic ip config
 
-pwnt_47169    - Course video exploit used
+Eth_s           - Static ip config
+
+pwnt_47169     - Course video exploit used
