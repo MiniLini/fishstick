@@ -8,6 +8,4 @@ Eth_d         - Dynamic ip config
 
 Eth_s         - Static ip config
 
-Ex_Nag_40921  - Nagios exploit fouund on server
-
 pwnt_47169    - Course video exploit used
