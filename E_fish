@@ -34,8 +34,8 @@ CheckRoot()
 #                                                                                             #
 ###############################################################################################
 
-Back_Door="/var/www/html/swancorp"   # Where your reverse-shell.php is located
-Tmp_Space="/tmp/re-port"             # Where you tar from
+Back_Door="/var/www/html/swancorp"   # Location of reverse shell & where I exfil data
+Tmp_Space="/tmp/re-port"             # Where I will compress files
 Enum_Report=(Enum_Report-$(date "+%F-%H-%M-%S").txt)
 Enum_Log=(Enum_Webserver_Log-$(date "+%F-%H-%M-%S").txt)
 Err_Log=(Enum_Report_Error_Log-$(date "+%F-%H-%M-%S").txt)
