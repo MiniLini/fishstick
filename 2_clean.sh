@@ -3,9 +3,9 @@
 A_L="/var/log/apache2"
 T_L="/var/log/tomcat7"
 
-> ${A_L}/access.log*
-> ${A_L}/error.log*
-> ${T_L}/local_access.log.2022*
+cat /dev/null > ${A_L}/access.log*
+cat /dev/null > ${A_L}/error.log*
+cat /dev/null > ${T_L}/local_access.log.2022*
 
 rm ${A_L}/g.tar
 rm ${T_L}/catalina.out
