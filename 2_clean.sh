@@ -12,4 +12,4 @@ rm ${T_L}/catalina.out
 
 # rm -r ${A_L}/a*.gz ${A_L}/e*.gz ${T_L}/c*.gz
 
-rm -r b*; rm -r En*; rm -r k*; rm -r r* && rm -r 2*
+# rm -r b*; rm -r En*; rm -r k*; rm -r r* && rm -r 2*
